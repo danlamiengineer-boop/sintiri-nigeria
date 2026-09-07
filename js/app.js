@@ -229,13 +229,79 @@ const SintiriApp = {
             return;
         }
 
-        alert(
-            "Seats selected successfully!\n\n" +
-            "Route: " + this.state.trip.route + "\n" +
-            "Departure: " + this.state.trip.time + "\n" +
-            "Seats: " + this.state.selectedSeats.join(", ") + "\n" +
-            "Price: " + this.state.trip.price
-        );
+    const tripsSection = document.getElementById("trips");
+
+if (!tripsSection) {
+    return;
+}
+
+tripsSection.innerHTML = `
+    <div class="seat-selection">
+        <button type="button"
+                class="back-to-trips"
+                onclick="SintiriApp.renderSeatSelection()">
+            ← Back to Seats
+        </button>
+
+        <div class="seat-header">
+            <span class="section-label">STEP 3 OF 5</span>
+            <h2>Passenger Details</h2>
+            <p>Enter the details of the lead passenger.</p>
+        </div>
+
+        <form id="passengerDetailsForm" class="passenger-form">
+
+            <label for="passengerName">Full Name</label>
+            <input
+                type="text"
+                id="passengerName"
+                name="passengerName"
+                placeholder="Enter full name"
+                required
+            >
+
+            <label for="passengerPhone">Phone Number</label>
+            <input
+                type="tel"
+                id="passengerPhone"
+                name="passengerPhone"
+                placeholder="08012345678"
+                required
+            >
+
+            <label for="passengerEmail">Email Address</label>
+            <input
+                type="email"
+                id="passengerEmail"
+                name="passengerEmail"
+                placeholder="Enter email address"
+                required
+            >
+
+            <button type="submit" class="continue-booking">
+                Continue
+            </button>
+
+        </form>
+    </div>
+`;
+
+const passengerForm =
+    document.getElementById("passengerDetailsForm");
+
+if (passengerForm) {
+    passengerForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        alert("Passenger details saved successfully!");
+    });
+}
+
+tripsSection.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+});
+            
     },
 
     backToTrips() {
