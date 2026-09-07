@@ -384,7 +384,81 @@ const paymentButton =
 
 if (paymentButton) {
     paymentButton.addEventListener("click", () => {
-        alert("Payment stage coming next.");
+        tripsSection.innerHTML = `
+    <div class="seat-selection">
+
+        <button type="button"
+                class="back-to-trips"
+                onclick="SintiriApp.renderSeatSelection()">
+            ← Back to Seats
+        </button>
+
+        <div class="seat-header">
+            <span class="section-label">STEP 5 OF 5</span>
+            <h2>Payment</h2>
+            <p>Choose your preferred payment method.</p>
+        </div>
+
+        <div class="booking-summary">
+
+            <div>
+                <strong>Journey</strong>
+                <span>${this.state.trip.route}</span>
+            </div>
+
+            <div>
+                <strong>Seats</strong>
+                <span>${this.state.selectedSeats.join(", ")}</span>
+            </div>
+
+            <div>
+                <strong>Passenger</strong>
+                <span>${this.state.passenger.name}</span>
+            </div>
+
+            <div>
+                <strong>Total Amount</strong>
+                <span>${this.state.trip.price}</span>
+            </div>
+
+        </div>
+
+        <div class="payment-methods">
+
+            <h3>Payment Method</h3>
+
+            <button type="button"
+                    class="payment-option"
+                    id="payCard">
+                💳 Pay with Card
+            </button>
+
+            <button type="button"
+                    class="payment-option"
+                    id="payTransfer">
+                🏦 Bank Transfer
+            </button>
+
+        </div>
+
+        <div class="payment-note">
+            <strong>Secure Payment</strong>
+            <p>
+                Your payment will be processed securely.
+                You will receive your booking confirmation after payment.
+            </p>
+        </div>
+
+    </div>
+`;
+
+document.getElementById("payCard").addEventListener("click", () => {
+    alert("Card payment will be connected next.");
+});
+
+document.getElementById("payTransfer").addEventListener("click", () => {
+    alert("Bank transfer payment will be connected next.");
+});
     });
 }
 
