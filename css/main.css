@@ -1,1 +1,482 @@
-/* Sintiri Nigeria — Main Styles */
+
+/* =========================================================
+   SINTIRI NIGERIA
+   Main Application Styles
+   ========================================================= */
+
+:root {
+    --primary: #0b5d3b;
+    --primary-dark: #08452d;
+    --primary-light: #eaf6f0;
+    --accent: #d9a441;
+
+    --text: #1f2937;
+    --muted: #6b7280;
+    --background: #f5f7fa;
+    --surface: #ffffff;
+    --border: #e5e7eb;
+
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+    --container: 1180px;
+}
+
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* ---------- Layout ---------- */
+
+.container {
+    width: min(92%, var(--container));
+    margin-inline: auto;
+}
+
+section {
+    padding: 64px 0;
+}
+
+/* ---------- Header ---------- */
+
+header {
+    background: var(--primary);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-sm);
+}
+
+.header-inner {
+    width: min(92%, var(--container));
+    min-height: 72px;
+    margin-inline: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #fff;
+    font-size: 1.35rem;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+}
+
+nav a:hover {
+    opacity: 0.75;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary-dark)
+        );
+    color: #fff;
+    padding: 88px 0;
+}
+
+.hero-content {
+    max-width: 760px;
+}
+
+.hero h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+}
+
+.hero p {
+    max-width: 650px;
+    margin: 0 0 30px;
+
+    font-size: 1.1rem;
+    opacity: 0.92;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 46px;
+    padding: 0 22px;
+
+    border: 0;
+    border-radius: var(--radius-sm);
+
+    background: var(--primary);
+    color: #fff;
+
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary {
+    background: #fff;
+    color: var(--primary);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-light);
+}
+
+/* ---------- Cards ---------- */
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 28px;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* ---------- Trips ---------- */
+
+.trips {
+    display: grid;
+    gap: 24px;
+}
+
+.trip-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.trip-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.trip-card h2,
+.trip-card h3 {
+    margin-top: 0;
+    color: var(--primary);
+}
+
+.trip-details {
+    display: grid;
+    gap: 8px;
+    margin: 20px 0;
+}
+
+.trip-price {
+    margin: 20px 0;
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+/* ---------- Forms ---------- */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 700;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 13px 15px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+
+    background: #fff;
+    color: var(--text);
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(11, 93, 59, 0.12);
+}
+
+/* ---------- Seat Selection ---------- */
+
+.seat-layout {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(50px, 1fr));
+    gap: 12px;
+    max-width: 420px;
+    margin: 30px auto;
+}
+
+.seat {
+    min-height: 48px;
+
+    border: 1px solid var(--primary);
+    border-radius: var(--radius-sm);
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.seat:hover {
+    transform: scale(1.03);
+}
+
+.seat.selected {
+    background: var(--primary);
+    color: #fff;
+}
+
+.seat.occupied {
+    background: #d1d5db;
+    border-color: #d1d5db;
+    color: #6b7280;
+    cursor: not-allowed;
+}
+
+/* ---------- Booking Summary ---------- */
+
+.booking-summary {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    box-shadow: var(--shadow-sm);
+}
+
+.booking-summary h2 {
+    margin-top: 0;
+    color: var(--primary);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.summary-row:last-child {
+    border-bottom: 0;
+}
+
+.total {
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+/* ---------- Alerts ---------- */
+
+.alert {
+    padding: 14px 18px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+}
+
+.alert-success {
+    background: #eaf6f0;
+    color: var(--primary-dark);
+}
+
+.alert-error {
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+    margin-top: 60px;
+    padding: 40px 0;
+
+    background: #10231c;
+    color: #d1d5db;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+/* ---------- Utilities ---------- */
+
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    color: var(--muted);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+    section {
+        padding: 48px 0;
+    }
+
+    .header-inner {
+        min-height: 64px;
+    }
+
+    nav {
+        gap: 14px;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+    }
+
+    .hero {
+        padding: 64px 0;
+    }
+
+    .trip-card {
+        padding: 24px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    .header-inner {
+        flex-direction: column;
+        padding: 14px 0;
+    }
+
+    nav {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .seat-layout {
+        gap: 8px;
+    }
+
+    .seat {
+        min-height: 44px;
+    }
+}
