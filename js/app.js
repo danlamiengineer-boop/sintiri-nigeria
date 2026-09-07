@@ -262,12 +262,21 @@ tripsSection.innerHTML = `
 
             <label for="passengerPhone">Phone Number</label>
             <input
-                type="tel"
-                id="passengerPhone"
-                name="passengerPhone"
-                placeholder="08012345678"
-                required
-            >
+    type="tel"
+    id="passengerPhone"
+    name="passengerPhone"
+    placeholder="08012345678"
+    maxlength="11"
+    minlength="11"
+    pattern="[0-9]{11}"
+    inputmode="numeric"
+    required
+>
+                
+                
+                
+            
+            
 
             <label for="passengerEmail">Email Address</label>
             <input
