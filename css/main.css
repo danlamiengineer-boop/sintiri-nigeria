@@ -737,3 +737,13 @@ footer a {
     margin-top: 4px;
     word-break: break-word;
 }
+@media (max-width: 900px) {
+    .booking-summary {
+        flex-direction: column !important;
+        gap: 16px;
+    }
+
+    .booking-summary > div {
+        width: 100%;
+    }
+}
