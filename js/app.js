@@ -301,8 +301,98 @@ const passengerForm =
 if (passengerForm) {
     passengerForm.addEventListener("submit", (event) => {
         event.preventDefault();
+const name = document.getElementById("passengerName").value;
+const phone = document.getElementById("passengerPhone").value;
+const email = document.getElementById("passengerEmail").value;
 
-        alert("Passenger details saved successfully!");
+this.state.passenger = {
+    name,
+    phone,
+    email
+};
+
+tripsSection.innerHTML = `
+    <div class="seat-selection">
+
+        <button type="button"
+                class="back-to-trips"
+                onclick="SintiriApp.renderSeatSelection()">
+            ← Back to Seats
+        </button>
+
+        <div class="seat-header">
+            <span class="section-label">STEP 4 OF 5</span>
+            <h2>Booking Summary</h2>
+            <p>Please review your booking details before payment.</p>
+        </div>
+
+        <div class="booking-summary">
+
+            <div>
+                <strong>Journey</strong>
+                <span>${this.state.trip.route}</span>
+            </div>
+
+            <div>
+                <strong>Departure</strong>
+                <span>${this.state.trip.time}</span>
+            </div>
+
+            <div>
+                <strong>Passengers</strong>
+                <span>${this.state.passengerCount}</span>
+            </div>
+
+            <div>
+                <strong>Seats</strong>
+                <span>${this.state.selectedSeats.join(", ")}</span>
+            </div>
+
+            <div>
+                <strong>Passenger</strong>
+                <span>${name}</span>
+            </div>
+
+            <div>
+                <strong>Phone</strong>
+                <span>${phone}</span>
+            </div>
+
+            <div>
+                <strong>Email</strong>
+                <span>${email}</span>
+            </div>
+
+            <div>
+                <strong>Total</strong>
+                <span>${this.state.trip.price}</span>
+            </div>
+
+        </div>
+
+        <button type="button"
+                class="continue-booking"
+                id="proceedToPayment">
+            Proceed to Payment
+        </button>
+
+    </div>
+`;
+
+const paymentButton =
+    document.getElementById("proceedToPayment");
+
+if (paymentButton) {
+    paymentButton.addEventListener("click", () => {
+        alert("Payment stage coming next.");
+    });
+}
+
+tripsSection.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+});
+        
     });
 }
 
