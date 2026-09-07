@@ -40,26 +40,25 @@
         }
 
         .hero {
-            background: linear-gradient(
-                rgba(0, 0, 0, 0.55),
-                rgba(0, 0, 0, 0.55)
-            ),
-            url("https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1600&q=80");
+            background:
+                linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+                url("https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1600&q=80");
 
             background-size: cover;
             background-position: center;
-
             min-height: 520px;
+
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+
             color: white;
             padding: 30px;
         }
 
         .hero-content {
-            max-width: 750px;
+            max-width: 800px;
         }
 
         .hero h1 {
@@ -69,60 +68,124 @@
 
         .hero p {
             font-size: 20px;
-            margin-bottom: 30px;
+            line-height: 1.5;
         }
 
         .booking-box {
             background: white;
             color: #222;
-            padding: 25px;
-            border-radius: 12px;
+
+            padding: 30px;
+            border-radius: 14px;
+
             max-width: 900px;
             margin: -60px auto 40px;
+
             position: relative;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 25px rgba(0,0,0,.15);
         }
 
         .booking-box h2 {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: #0b5d3b;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            gap: 18px;
         }
 
         label {
             display: block;
             font-weight: bold;
-            margin-bottom: 7px;
+            margin-bottom: 8px;
         }
 
         select,
         input {
             width: 100%;
-            padding: 13px;
+            padding: 14px;
             border: 1px solid #ccc;
             border-radius: 7px;
             font-size: 16px;
         }
 
         .search-btn {
-            margin-top: 20px;
+            margin-top: 22px;
             width: 100%;
             padding: 15px;
+
             border: none;
             border-radius: 7px;
+
             background: #0b5d3b;
             color: white;
+
             font-size: 18px;
             font-weight: bold;
+
             cursor: pointer;
         }
 
         .search-btn:hover {
+            background: #08482e;
+        }
+
+        /* TRIPS */
+
+        #trips {
+            display: none;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        #trips h2 {
+            color: #0b5d3b;
+            margin-bottom: 20px;
+        }
+
+        .trip-card {
+            background: white;
+            padding: 22px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+
+            box-shadow: 0 3px 15px rgba(0,0,0,.08);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .trip-info h3 {
+            color: #0b5d3b;
+            margin-bottom: 8px;
+        }
+
+        .trip-info p {
+            margin: 5px 0;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .select-trip {
+            border: none;
+            background: #0b5d3b;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .select-trip:hover {
             background: #08482e;
         }
 
@@ -147,7 +210,7 @@
             background: white;
             padding: 30px 20px;
             border-radius: 10px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 3px 15px rgba(0,0,0,.08);
         }
 
         .card h3 {
@@ -164,6 +227,7 @@
         }
 
         @media (max-width: 700px) {
+
             header {
                 flex-direction: column;
                 gap: 12px;
@@ -184,6 +248,11 @@
             .cards {
                 grid-template-columns: 1fr;
             }
+
+            .trip-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
@@ -191,96 +260,348 @@
 <body>
 
 <header>
-    <div class="logo">SINTIRI NIGERIA</div>
+
+    <div class="logo">
+        SINTIRI NIGERIA
+    </div>
 
     <nav>
         <a href="#">Home</a>
-        <a href="#">Routes</a>
+        <a href="#trips">Routes</a>
         <a href="#">Contact</a>
     </nav>
+
 </header>
 
+
 <section class="hero">
+
     <div class="hero-content">
-        <h1>Travel With Sintiri Nigeria</h1>
-        <p>Safe, comfortable and reliable business-class passenger transportation.</p>
+
+        <h1>
+            Travel With Sintiri Nigeria
+        </h1>
+
+        <p>
+            Safe, comfortable and reliable business-class passenger transportation.
+        </p>
+
     </div>
+
 </section>
+
 
 <section class="booking-box">
 
-    <h2>Book Your Journey</h2>
+    <h2>
+        Book Your Journey
+    </h2>
 
     <div class="form-row">
 
         <div>
-            <label>From</label>
-            <select>
-                <option>Abuja</option>
-                <option>Kaduna</option>
+
+            <label>
+                From
+            </label>
+
+            <select id="from">
+
+                <option value="Abuja">
+                    Abuja
+                </option>
+
+                <option value="Kaduna">
+                    Kaduna
+                </option>
+
             </select>
+
         </div>
 
-        <div>
-            <label>To</label>
-            <select>
-                <option>Kaduna</option>
-                <option>Abuja</option>
-            </select>
-        </div>
 
         <div>
-            <label>Travel Date</label>
-            <input type="date">
+
+            <label>
+                To
+            </label>
+
+            <select id="to">
+
+                <option value="Kaduna">
+                    Kaduna
+                </option>
+
+                <option value="Abuja">
+                    Abuja
+                </option>
+
+            </select>
+
         </div>
 
+
         <div>
-            <label>Passengers</label>
-            <select>
-                <option>1 Passenger</option>
-                <option>2 Passengers</option>
-                <option>3 Passengers</option>
-                <option>4 Passengers</option>
-                <option>5 Passengers</option>
+
+            <label>
+                Travel Date
+            </label>
+
+            <input
+                type="date"
+                id="travelDate"
+            >
+
+        </div>
+
+
+        <div>
+
+            <label>
+                Passengers
+            </label>
+
+            <select id="passengers">
+
+                <option value="1">
+                    1 Passenger
+                </option>
+
+                <option value="2">
+                    2 Passengers
+                </option>
+
+                <option value="3">
+                    3 Passengers
+                </option>
+
+                <option value="4">
+                    4 Passengers
+                </option>
+
+                <option value="5">
+                    5 Passengers
+                </option>
+
             </select>
+
         </div>
 
     </div>
 
-    <button class="search-btn">
+
+    <button
+        class="search-btn"
+        onclick="searchTrips()"
+    >
         Search Available Trips
     </button>
 
 </section>
 
-<section class="services">
 
-    <h2>Why Travel With Us?</h2>
+<section id="trips">
 
-    <div class="cards">
+    <h2>
+        Available Trips
+    </h2>
 
-        <div class="card">
-            <h3>Comfortable Travel</h3>
-            <p>Enjoy a comfortable business-class passenger experience.</p>
+
+    <div class="trip-card">
+
+        <div class="trip-info">
+
+            <h3>
+                Abuja → Kaduna
+            </h3>
+
+            <p>
+                Departure: 8:00 AM
+            </p>
+
+            <p>
+                Business Class Vehicle
+            </p>
+
+            <p>
+                Seats Available: 12
+            </p>
+
         </div>
 
-        <div class="card">
-            <h3>Scheduled Trips</h3>
-            <p>Choose from scheduled departures between Abuja and Kaduna.</p>
+
+        <div>
+
+            <div class="price">
+                ₦15,000
+            </div>
+
+            <button
+                class="select-trip"
+                onclick="selectTrip('8:00 AM')"
+            >
+                Select Trip
+            </button>
+
         </div>
 
-        <div class="card">
-            <h3>Easy Booking</h3>
-            <p>Book your trip online and select your preferred seat.</p>
+    </div>
+
+
+    <div class="trip-card">
+
+        <div class="trip-info">
+
+            <h3>
+                Abuja → Kaduna
+            </h3>
+
+            <p>
+                Departure: 2:00 PM
+            </p>
+
+            <p>
+                Business Class Vehicle
+            </p>
+
+            <p>
+                Seats Available: 18
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <div class="price">
+                ₦15,000
+            </div>
+
+            <button
+                class="select-trip"
+                onclick="selectTrip('2:00 PM')"
+            >
+                Select Trip
+            </button>
+
         </div>
 
     </div>
 
 </section>
 
+
+<section class="services">
+
+    <h2>
+        Why Travel With Us?
+    </h2>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h3>
+                Comfortable Travel
+            </h3>
+
+            <p>
+                Enjoy a comfortable business-class passenger experience.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Scheduled Trips
+            </h3>
+
+            <p>
+                Choose from scheduled departures between Abuja and Kaduna.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Easy Booking
+            </h3>
+
+            <p>
+                Book your trip online and select your preferred seat.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
 <footer>
-    <p>© 2026 Sintiri Nigeria. All Rights Reserved.</p>
+
+    <p>
+        © 2026 Sintiri Nigeria. All Rights Reserved.
+    </p>
+
 </footer>
+
+
+<script>
+
+function searchTrips() {
+
+    const from =
+        document.getElementById("from").value;
+
+    const to =
+        document.getElementById("to").value;
+
+    const date =
+        document.getElementById("travelDate").value;
+
+    if (from === to) {
+
+        alert("Please select different departure and destination locations.");
+
+        return;
+    }
+
+    if (!date) {
+
+        alert("Please select your travel date.");
+
+        return;
+    }
+
+    const trips =
+        document.getElementById("trips");
+
+    trips.style.display = "block";
+
+    trips.scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+function selectTrip(time) {
+
+    alert(
+        "Trip selected: " +
+        time +
+        ". Next step will be seat selection."
+    );
+
+}
+
+</script>
 
 </body>
 </html>
