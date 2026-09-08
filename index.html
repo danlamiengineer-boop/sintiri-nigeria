@@ -635,5 +635,62 @@ function searchTrips() {
 
 
 </script>
+    <section id="confirmation" class="confirmation-section" style="display: none;">
+    <div class="confirmation-card">
+
+        <div class="confirmation-icon">✓</div>
+
+        <span class="section-label">BOOKING CONFIRMED</span>
+
+        <h2>Your booking is confirmed!</h2>
+
+        <p class="confirmation-message">
+            Thank you for booking with Sintiri Nigeria.
+        </p>
+
+        <div class="booking-reference">
+            <span>Booking Reference</span>
+            <strong id="bookingReference">SNT-000000</strong>
+        </div>
+
+        <div class="confirmation-details">
+            <div>
+                <span>Journey</span>
+                <strong id="confirmJourney">-</strong>
+            </div>
+
+            <div>
+                <span>Departure</span>
+                <strong id="confirmDeparture">-</strong>
+            </div>
+
+            <div>
+                <span>Passenger</span>
+                <strong id="confirmPassenger">-</strong>
+            </div>
+
+            <div>
+                <span>Seats</span>
+                <strong id="confirmSeats">-</strong>
+            </div>
+
+            <div>
+                <span>Total Paid</span>
+                <strong id="confirmTotal">-</strong>
+            </div>
+        </div>
+
+        <div class="confirmation-actions">
+            <button type="button" class="continue-booking" onclick="window.print()">
+                Print Ticket
+            </button>
+
+            <button type="button" class="back-to-trips" onclick="location.reload()">
+                Back to Home
+            </button>
+        </div>
+
+    </div>
+    </section>
 </body>
 </html>
