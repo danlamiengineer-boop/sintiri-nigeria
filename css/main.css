@@ -903,32 +903,30 @@ footer a {
     }
 }
 @media print {
-    body * {
-        visibility: hidden;
-    }
-
-    #confirmation,
-    #confirmation * {
-        visibility: visible;
+    body > * {
+        display: none !important;
     }
 
     #confirmation {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        padding: 20px;
-        background: white;
+        display: block !important;
+        position: static !important;
+        width: 100% !important;
+        min-height: auto !important;
+        padding: 20px !important;
+        margin: 0 !important;
+        background: white !important;
     }
 
     .confirmation-card {
-        max-width: 700px;
-        margin: 0 auto;
-        box-shadow: none;
-        border: 1px solid #ddd;
+        max-width: 700px !important;
+        margin: 0 auto !important;
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
     }
 
     .confirmation-actions {
-        display: none;
+        display: none !important;
     }
 }
+    
+
