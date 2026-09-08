@@ -451,14 +451,32 @@ if (paymentButton) {
 
     </div>
 `;
+const showConfirmation = () => {
+    const reference = "SNT-" + Date.now().toString().slice(-6);
 
-document.getElementById("payCard").addEventListener("click", () => {
-    alert("Card payment will be connected next.");
-});
+    document.getElementById("bookingReference").textContent = reference;
+    document.getElementById("confirmJourney").textContent = this.state.trip.route;
+    document.getElementById("confirmDeparture").textContent = this.state.trip.time;
+    document.getElementById("confirmPassenger").textContent = this.state.passenger.name;
+    document.getElementById("confirmSeats").textContent = this.state.selectedSeats.join(", ");
+    document.getElementById("confirmTotal").textContent = this.state.trip.price;
 
-document.getElementById("payTransfer").addEventListener("click", () => {
-    alert("Bank transfer payment will be connected next.");
-});
+    tripsSection.style.display = "none";
+
+    const confirmation = document.getElementById("confirmation");
+
+    if (confirmation) {
+        confirmation.style.display = "block";
+        confirmation.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+};
+
+document.getElementById("payCard").addEventListener("click", showConfirmation);
+document.getElementById("payTransfer").addEventListener("click", showConfirmation);
+
     });
 }
 
