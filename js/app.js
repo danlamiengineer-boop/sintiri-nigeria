@@ -493,11 +493,10 @@ const showConfirmation = () => {
         confirmation.scrollIntoView({
             behavior: "smooth",
             block: "start"
-        });
-        
+        });   
     }
-};
-   const booking = {
+
+        const booking = {
     reference,
     passenger: this.state.passenger.name,
     phone: this.state.passenger.phone,
@@ -511,7 +510,11 @@ const showConfirmation = () => {
 
 const bookings = JSON.parse(localStorage.getItem("sintiriBookings") || "[]");
 bookings.push(booking);
-localStorage.setItem("sintiriBookings", JSON.stringify(bookings));     
+localStorage.setItem("sintiriBookings", JSON.stringify(bookings));
+
+};
+        
+
         
 
 
