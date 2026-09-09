@@ -251,29 +251,27 @@
 
     <section class="stats">
 
-        <div class="stat-card income-card">
-    <span>Income Overview</span>
+        <div class="stat-card booking-search-card">
+    <span>Booking Search</span>
 
-    <div class="income-breakdown">
-        <div>
-            <small>Today</small>
-            <strong>₦0</strong>
-        </div>
+    <div class="booking-search">
+        <label for="bookingDate">Select Date</label>
 
-        <div>
-            <small>This Week</small>
-            <strong>₦0</strong>
-        </div>
+        <input
+            type="date"
+            id="bookingDate"
+        >
 
-        <div>
-            <small>This Month</small>
-            <strong>₦0</strong>
-        </div>
+        <button
+            type="button"
+            id="searchBookings"
+        >
+            Search
+        </button>
+    </div>
 
-        <div>
-            <small>This Year</small>
-            <strong>₦0</strong>
-        </div>
+    <div id="bookingSearchResults">
+        <p>Select a date to view bookings.</p>
     </div>
         </div>
             
@@ -369,8 +367,7 @@
 const bookings = JSON.parse(
     localStorage.getItem("sintiriBookings") || "[]"
 );
-    alert("Total: " + bookings[bookings.length - 1].total + " | Date: " + bookings[bookings.length - 1].date);
-
+    
 const now = new Date();
 
 const startOfToday = new Date(
@@ -449,6 +446,50 @@ if (incomeValues.length >= 4) {
 
     incomeValues[3].textContent =
         "₦" + yearIncome.toLocaleString();
+}
+    const searchButton = document.getElementById("searchBookings");
+const bookingDateInput = document.getElementById("bookingDate");
+const searchResults = document.getElementById("bookingSearchResults");
+
+if (searchButton) {
+    searchButton.addEventListener("click", () => {
+        const selectedDate = bookingDateInput.value;
+
+        if (!selectedDate) {
+            searchResults.innerHTML = "<p>Please select a date.</p>";
+            return;
+        }
+
+        const matchingBookings = bookings.filter(booking => {
+            if (!booking.date) return false;
+
+            const bookingDate = new Date(booking.date)
+                .toISOString()
+                .slice(0, 10);
+
+            return bookingDate === selectedDate;
+        });
+
+        if (matchingBookings.length === 0) {
+            searchResults.innerHTML =
+                "<p>No bookings found for this date.</p>";
+            return;
+        }
+
+        searchResults.innerHTML = matchingBookings.map(booking => `
+            <div class="booking-result-card">
+                <h3>${booking.reference}</h3>
+
+                <p><strong>Passenger:</strong> ${booking.passenger}</p>
+                <p><strong>Phone:</strong> ${booking.phone}</p>
+                <p><strong>Route:</strong> ${booking.route}</p>
+                <p><strong>Departure:</strong> ${booking.departure}</p>
+                <p><strong>Seat:</strong> ${booking.seats.join(", ")}</p>
+                <p><strong>Amount:</strong> ₦${Number(booking.total).toLocaleString()}</p>
+                <p><strong>Status:</strong> Confirmed</p>
+            </div>
+        `).join("");
+    });
 }
 </script>
 </body>
