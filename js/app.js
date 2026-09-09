@@ -494,8 +494,30 @@ const showConfirmation = () => {
             behavior: "smooth",
             block: "start"
         });
+        
     }
 };
+   const booking = {
+    reference,
+    passenger: this.state.passenger.name,
+    phone: this.state.passenger.phone,
+    email: this.state.passenger.email,
+    route: this.state.trip.route,
+    departure: this.state.trip.time,
+    seats: this.state.selectedSeats,
+    total: Number(this.state.trip.price),
+    date: new Date().toISOString()
+};
+
+const bookings = JSON.parse(localStorage.getItem("sintiriBookings") || "[]");
+bookings.push(booking);
+localStorage.setItem("sintiriBookings", JSON.stringify(bookings));     
+        
+
+
+
+
+
 
 document.getElementById("payCard").addEventListener("click", showConfirmation);
 document.getElementById("payTransfer").addEventListener("click", showConfirmation);
