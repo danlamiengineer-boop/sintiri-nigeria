@@ -369,7 +369,7 @@
 const bookings = JSON.parse(
     localStorage.getItem("sintiriBookings") || "[]"
 );
-    alert("Saved bookings: " + bookings.length);
+    alert("Total: " + bookings[0].total + " | Date: " + bookings[0].date);
 
 const now = new Date();
 
