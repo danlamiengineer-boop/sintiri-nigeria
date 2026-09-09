@@ -282,7 +282,7 @@
 
         <div class="stat-card">
             <span>Today's Trips</span>
-            <strong>0</strong>
+            <strong id="todayTrips">0</strong>
         </div>
 
         <div class="stat-card">
@@ -421,6 +421,12 @@ bookings.forEach(booking => {
         yearIncome += amount;
     }
 });
+    const todayTrips = bookings.filter(booking => {
+    const bookingDate = new Date(booking.date);
+    return bookingDate >= startOfToday;
+}).length;
+
+document.getElementById("todayTrips").textContent = todayTrips;
 
 const incomeValues = document.querySelectorAll(
     ".income-breakdown strong"
