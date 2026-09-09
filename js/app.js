@@ -504,7 +504,7 @@ const showConfirmation = () => {
     route: this.state.trip.route,
     departure: this.state.trip.time,
     seats: this.state.selectedSeats,
-    total: Number(this.state.trip.price),
+    total: Number(String(this.state.trip.price).replace(/[^0-9.]/g, "")),
     date: new Date().toISOString()
 };
 
