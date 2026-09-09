@@ -365,6 +365,79 @@
 <footer>
     © 2026 Sintiri Nigeria. Admin Portal.
 </footer>
+<script>
+const bookings = JSON.parse(
+    localStorage.getItem("sintiriBookings") || "[]"
+);
 
+const now = new Date();
+
+const startOfToday = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate()
+);
+
+const startOfWeek = new Date(startOfToday);
+const day = startOfWeek.getDay();
+const mondayOffset = day === 0 ? 6 : day - 1;
+startOfWeek.setDate(startOfWeek.getDate() - mondayOffset);
+
+const startOfMonth = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    1
+);
+
+const startOfYear = new Date(
+    now.getFullYear(),
+    0,
+    1
+);
+
+let todayIncome = 0;
+let weekIncome = 0;
+let monthIncome = 0;
+let yearIncome = 0;
+
+bookings.forEach(booking => {
+    const bookingDate = new Date(booking.date);
+    const amount = Number(booking.total) || 0;
+
+    if (bookingDate >= startOfToday) {
+        todayIncome += amount;
+    }
+
+    if (bookingDate >= startOfWeek) {
+        weekIncome += amount;
+    }
+
+    if (bookingDate >= startOfMonth) {
+        monthIncome += amount;
+    }
+
+    if (bookingDate >= startOfYear) {
+        yearIncome += amount;
+    }
+});
+
+const incomeValues = document.querySelectorAll(
+    ".income-breakdown strong"
+);
+
+if (incomeValues.length >= 4) {
+    incomeValues[0].textContent =
+        "₦" + todayIncome.toLocaleString();
+
+    incomeValues[1].textContent =
+        "₦" + weekIncome.toLocaleString();
+
+    incomeValues[2].textContent =
+        "₦" + monthIncome.toLocaleString();
+
+    incomeValues[3].textContent =
+        "₦" + yearIncome.toLocaleString();
+}
+</script>
 </body>
 </html>
