@@ -287,7 +287,7 @@
 
         <div class="stat-card">
             <span>Passengers</span>
-            <strong>0</strong>
+            <strong id="passengerCount">0</strong>
         </div>
 
         <div class="stat-card">
@@ -427,6 +427,11 @@ bookings.forEach(booking => {
 }).length;
 
 document.getElementById("todayTrips").textContent = todayTrips;
+    const passengerCount = bookings.reduce((total, booking) => {
+    return total + (booking.seats ? booking.seats.length : 0);
+}, 0);
+
+document.getElementById("passengerCount").textContent = passengerCount;
 
 const incomeValues = document.querySelectorAll(
     ".income-breakdown strong"
