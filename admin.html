@@ -515,7 +515,7 @@ function updateDashboardForDate(selectedDate) {
         <div class="booking-result-card">
             <h3>${booking.reference}</h3>
             <p><strong>Passenger:</strong> ${booking.passenger}</p>
-            <p><strong>Phone:</strong> ${booking.phone}</p>
+            <p><strong>Phone:</strong> <a href="tel:${booking.phone}">${booking.phone}</a></p>
             <p><strong>Route:</strong> ${booking.route}</p>
             <p><strong>Departure:</strong> ${booking.departure}</p>
             <p><strong>Seat:</strong> ${booking.seats.join(", ")}</p>
