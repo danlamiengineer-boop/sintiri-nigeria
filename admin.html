@@ -516,6 +516,7 @@ function updateDashboardForDate(selectedDate) {
 
     searchResults.innerHTML = matchingBookings.map(booking => `
         <div class="booking-result-card">
+        
             <h3>${booking.reference}</h3>
             <p><strong>Passenger:</strong> ${booking.passenger}</p>
             <p><strong>Phone:</strong> <a href="tel:${booking.phone}">${booking.phone}</a></p>
@@ -523,8 +524,11 @@ function updateDashboardForDate(selectedDate) {
             <p><strong>Departure:</strong> ${booking.departure}</p>
             <p><strong>Seat:</strong> ${booking.seats.join(", ")}</p>
             <p><strong>Amount:</strong> ₦${Number(booking.total).toLocaleString()}</p>
-            <p><strong>Status:</strong> Confirmed</p>
-        </div>
+            <div class="booking-actions">
+    <button type="button" class="save-record">Save Record</button>
+    <button type="button" class="download-record">Download Record</button>
+</div>
+</div>
     `).join("");
 }
 
