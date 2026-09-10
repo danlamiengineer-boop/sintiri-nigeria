@@ -450,10 +450,58 @@ if (incomeValues.length >= 4) {
     const searchButton = document.getElementById("searchBookings");
 const bookingDateInput = document.getElementById("bookingDate");
 const searchResults = document.getElementById("bookingSearchResults");
+function updateDashboardForDate(selectedDate) {
+    const matchingBookings = bookings.filter(booking => {
+        if (!booking.date) return false;
 
+        const bookingDate = new Date(booking.date);
+
+        const bookingDateString =
+            bookingDate.getFullYear() + "-" +
+            String(bookingDate.getMonth() + 1).padStart(2, "0") + "-" +
+            String(bookingDate.getDate()).padStart(2, "0");
+
+        return bookingDateString === selectedDate;
+    });
+
+    const trips = matchingBookings.length;
+
+    const passengers = matchingBookings.reduce((total, booking) => {
+        return total + (booking.seats ? booking.seats.length : 0);
+    }, 0);
+
+    const revenue = matchingBookings.reduce((total, booking) => {
+        return total + (Number(booking.total) || 0);
+    }, 0);
+
+    document.getElementById("todayTrips").textContent = trips;
+    document.getElementById("passengerCount").textContent = passengers;
+    document.getElementById("revenueAmount").textContent =
+        "₦" + revenue.toLocaleString();
+
+    if (matchingBookings.length === 0) {
+        searchResults.innerHTML =
+            "<p>No bookings found for this date.</p>";
+        return;
+    }
+
+    searchResults.innerHTML = matchingBookings.map(booking => `
+        <div class="booking-result-card">
+            <h3>${booking.reference}</h3>
+            <p><strong>Passenger:</strong> ${booking.passenger}</p>
+            <p><strong>Phone:</strong> ${booking.phone}</p>
+            <p><strong>Route:</strong> ${booking.route}</p>
+            <p><strong>Departure:</strong> ${booking.departure}</p>
+            <p><strong>Seat:</strong> ${booking.seats.join(", ")}</p>
+            <p><strong>Amount:</strong> ₦${Number(booking.total).toLocaleString()}</p>
+            <p><strong>Status:</strong> Confirmed</p>
+        </div>
+    `).join("");
+}
 if (searchButton) {
     searchButton.addEventListener("click", () => {
         const selectedDate = bookingDateInput.value;
+        updateDashboardForDate(selectedDate);
 
         if (!selectedDate) {
             searchResults.innerHTML = "<p>Please select a date.</p>";
@@ -491,6 +539,16 @@ if (searchButton) {
         `).join("");
     });
 }
+    const today = new Date();
+
+const todayString =
+    today.getFullYear() + "-" +
+    String(today.getMonth() + 1).padStart(2, "0") + "-" +
+    String(today.getDate()).padStart(2, "0");
+
+bookingDateInput.value = todayString;
+
+updateDashboardForDate(todayString);
 </script>
 </body>
 </html>
