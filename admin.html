@@ -526,6 +526,12 @@ function updateDashboardForDate(selectedDate) {
 }
 
     const today = new Date();
+    if (searchButton) {
+    searchButton.addEventListener("click", () => {
+        const selectedDate = bookingDateInput.value;
+        updateDashboardForDate(selectedDate);
+    });
+    }
 
 const todayString =
     today.getFullYear() + "-" +
