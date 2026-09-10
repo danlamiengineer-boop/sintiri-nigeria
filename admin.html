@@ -524,9 +524,9 @@ if (searchButton) {
             return;
         }
 
-        searchResults.innerHTML = matchingBookings.map(booking => `
+        searchResults.innerHTML = matchingBookings.map((booking, index) => `
             <div class="booking-result-card">
-                <h3>${booking.reference}</h3>
+                <h3>Booking #${index + 1} — ${booking.reference}</h3>
 
                 <p><strong>Passenger:</strong> ${booking.passenger}</p>
                 <p><strong>Phone:</strong> ${booking.phone}</p>
