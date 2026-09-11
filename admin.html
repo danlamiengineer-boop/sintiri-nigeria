@@ -302,6 +302,12 @@
     <div id="bookingSearchResults">
         <p>Select a date to view bookings.</p>
     </div>
+            
+<button type="button" id="downloadAllRecords">
+     Download All Records
+ </button>
+
+ </div>
         </div>
             
             
@@ -539,6 +545,62 @@ function updateDashboardForDate(selectedDate) {
         updateDashboardForDate(selectedDate);
     });
     }
+    const downloadAllRecordsButton = document.getElementById("downloadAllRecords");
+
+if (downloadAllRecordsButton) {
+    downloadAllRecordsButton.addEventListener("click", () => {
+        const selectedDate = bookingDateInput.value;
+
+        const matchingBookings = bookings.filter(booking => {
+            if (!booking.date) return false;
+
+            const bookingDate = new Date(booking.date);
+
+            const bookingDateString =
+                bookingDate.getFullYear() + "-" +
+                String(bookingDate.getMonth() + 1).padStart(2, "0") + "-" +
+                String(bookingDate.getDate()).padStart(2, "0");
+
+            return bookingDateString === selectedDate;
+        });
+
+        if (matchingBookings.length === 0) {
+            alert("No bookings found for this date.");
+            return;
+        }
+
+        const records = matchingBookings.map((booking, index) => {
+            return [
+                index + 1,
+                booking.reference,
+                booking.passenger,
+                booking.phone,
+                booking.route,
+                booking.departure,
+                booking.seats.join(", "),
+                booking.total
+            ].join(",");
+        });
+
+        const csv = [
+            "No,Booking Reference,Passenger,Phone,Route,Departure,Seats,Amount",
+            ...records
+        ].join("\n");
+
+        const blob = new Blob([csv], {
+            type: "text/csv"
+        });
+
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "Sintiri-Bookings-" + selectedDate + ".csv";
+        link.click();
+
+        URL.revokeObjectURL(url);
+    });
+}
 
 const todayString =
     today.getFullYear() + "-" +
